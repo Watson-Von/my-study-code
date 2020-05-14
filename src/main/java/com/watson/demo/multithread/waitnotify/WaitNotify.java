@@ -13,9 +13,9 @@ import java.util.concurrent.TimeUnit;
  * 线程 A 收到通知后从对象 O 的 wait() 方法返回, 进而执行后续操作.
  * 上述两个线程通过对象 O 来完成交互,
  * 而对象上的 wait() 和 notify/notifyAll() 的关系就如同开关信号一样, 用来完成等待方和通知方之间的交互工作.
- * <p>
+ *
  * 注意事项:
- * <p>
+ *
  * 1. 调用 wait(), notify(), notifyAll() 需要先对调用对象加锁.
  * 2. 调用 wait() 方法后, 线程状态从 RUNNING 变成 WAITING, 并将当前线程放到对象的等待队列.
  * 3. 调用 notify()/notifyAll() 后, 等待线程不会马上从 wait() 返回, 需要等调用 notify()/notifyAll() 的线程释放锁.
