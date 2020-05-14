@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ConnectionPoolTest {
 
     // 初始化数据库连接池
-    private static ConnectionPool pool = new ConnectionPool(10);
+    private static ConnectionPool connectionPool = new ConnectionPool(10);
 
     // 保证所有 ConnectionRunner 能够同时开始
     private static CountDownLatch start = new CountDownLatch(1);
@@ -64,14 +64,14 @@ public class ConnectionPoolTest {
             while (count > 0) {
                 try {
                     // 从连接池中获取连接, 如果 1000 毫秒获取不到, 则返回 null
-                    Connection connection = pool.fetchConnection(1000);
+                    Connection connection = connectionPool.fetchConnection(1000);
                     if (connection != null) {
                         try {
                             connection.createStatement();
                             connection.commit();
                         } finally {
                             // 释放连接
-                            pool.releaseConnection(connection);
+                            connectionPool.releaseConnection(connection);
                             // 统计获取到的连接的次数
                             got.incrementAndGet();
                         }
