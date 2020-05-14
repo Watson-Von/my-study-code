@@ -1,4 +1,4 @@
-package com.watson.demo.multithread.waitnotify;
+package com.watson.demo.multithread;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
