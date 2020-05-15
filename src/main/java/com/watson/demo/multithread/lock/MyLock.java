@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Condition;
 /**
  * @author : fengHangWen
  * @CreateDate : 2020/5/15 15:22
- * @Description : 自定义同步组件
+ * @Description : 自定义同步组件.
  */
 public class MyLock {
 
