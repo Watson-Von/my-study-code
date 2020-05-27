@@ -25,7 +25,6 @@ public class CyclicBarrierTest {
     public static void main(String[] args) {
 
         new Thread(() -> {
-            System.out.println("4");
             try {
                 cyclicBarrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
