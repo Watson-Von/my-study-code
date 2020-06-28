@@ -18,8 +18,6 @@ public class RedisTest {
 
     @Test
     public void testSet() {
-        redisUtil.set("A", "a");
-
         System.out.println(redisUtil.get("A"));
     }
 
