@@ -9,12 +9,16 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 public class SignInfo {
 
-    private String appId;//小程序ID
-    private String timeStamp;//时间戳
-    private String nonceStr;//随机串
+    // 小程序ID
+    private String appId;
+    // 时间戳
+    private String timeStamp;
+    // 随机串
+    private String nonceStr;
     @XStreamAlias("package")
     private String repay_id;
-    private String signType;//签名方式
+    // 签名方式
+    private String signType;
 
     public String getAppId() {
         return appId;
