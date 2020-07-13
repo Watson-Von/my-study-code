@@ -36,7 +36,7 @@ public class Sign extends HttpServlet {
             signInfo.setNonceStr(RandomStringGenerator.getRandomStringByLength(32));
             signInfo.setRepay_id("prepay_id=" + repay_id);
             signInfo.setSignType("MD5");
-            //生成签名
+            // 生成签名
             String sign = SignUtil.getSign(signInfo);
 
             JSONObject json = new JSONObject();

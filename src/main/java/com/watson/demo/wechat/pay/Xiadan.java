@@ -37,7 +37,7 @@ public class Xiadan extends HttpServlet {
             // 随机字符串
             order.setNonce_str(RandomStringGenerator.getRandomStringByLength(32));
             // 商品描述
-            order.setBody("dfdfdf");
+            order.setBody("商品描述");
             // 商户系统内部订单号, 要求32个字符内, 只能是数字、大小写字母_-|*@, 且在同一个商户号下唯一
             order.setOut_trade_no("123456789");
             // 标价金额(分)
@@ -55,7 +55,6 @@ public class Xiadan extends HttpServlet {
             // 生成签名
             String sign = SignUtil.getSign(order);
             order.setSign(sign);
-
 
             String result = HttpRequest.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", order);
             log.info("下单返回:" + result);

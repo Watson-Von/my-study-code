@@ -1,5 +1,6 @@
 package com.watson.demo.wechat.pay.common;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 public class MD5 {
@@ -47,7 +48,7 @@ public class MD5 {
         try {
             resultString = origin;
             MessageDigest md = MessageDigest.getInstance("MD5");
-            resultString = byteArrayToHexString(md.digest(resultString.getBytes()));
+            resultString = byteArrayToHexString(md.digest(resultString.getBytes(StandardCharsets.UTF_8)));
         } catch (Exception e) {
             e.printStackTrace();
         }
