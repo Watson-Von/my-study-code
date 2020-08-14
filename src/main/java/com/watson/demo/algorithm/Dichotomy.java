@@ -22,22 +22,15 @@ public class Dichotomy {
         while (low <= high) {
 
             middle = (low + high) / 2;
-            System.out.println(middle);
-
             if (array[middle] > i) {
                 high = middle - 1;
-
-                System.out.println("high : " + high);
             } else if (array[middle] < i) {
                 low = middle + 1;
-
-                System.out.println("low : " + low);
             } else {
                 return middle;
             }
 
         }
-
 
         return 0;
 
