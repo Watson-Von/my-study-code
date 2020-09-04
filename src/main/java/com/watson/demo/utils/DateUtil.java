@@ -47,7 +47,7 @@ public class DateUtil {
         return Math.abs(month + result);
     }
 
-    public static final String datetimetoStr(Date date) {
+    public static String datetime2Str(Date date) {
         SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (date != null) {
             return simpledateformat.format(date);
@@ -60,7 +60,7 @@ public class DateUtil {
         try {
             Date date = DateUtil.stringToDate("2019-05-19T02:40:29.923Z", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
-            System.out.println(datetimetoStr(date));
+            System.out.println(datetime2Str(date));
 
         } catch (ParseException e) {
             e.printStackTrace();
