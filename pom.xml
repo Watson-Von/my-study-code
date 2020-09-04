@@ -22,6 +22,15 @@
     </properties>
 
     <dependencies>
+
+        <!-- ok http start-->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <!-- ok http end-->
+
         <!-- json相关依赖 start -->
         <dependency>
             <groupId>com.alibaba</groupId>
