@@ -17,7 +17,7 @@ public class RedisUtil {
     /**
      * @author : fengHangWen
      * @CreateDate : 2020/6/15 14:09
-     * @Description : 设置值
+     * @Description : 设置值.
      */
     public boolean set(final String key, Object value) {
         boolean result = false;
