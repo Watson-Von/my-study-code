@@ -22,10 +22,14 @@ public class JexlEngineUtils {
         map.forEach(jexlContext::set);
 
         JexlExpression jexlExpression = jexl.createExpression(expression);
-        Object obj = jexlExpression.evaluate(jexlContext);
-        BigDecimal result = new BigDecimal(null == obj ? "0" : obj.toString());
-        System.out.println(jexlExpression.getParsedText() + " = " + result);
-        return result.setScale(scale, BigDecimal.ROUND_HALF_UP);
+        try {
+            Object obj = jexlExpression.evaluate(jexlContext);
+            BigDecimal result = new BigDecimal(null == obj ? "0" : obj.toString());
+            System.out.println(jexlExpression.getParsedText() + " = " + result);
+            return result.setScale(scale, BigDecimal.ROUND_HALF_UP);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     //因为精度问题引入BigDecimal
@@ -33,7 +37,7 @@ public class JexlEngineUtils {
     public static void main(String[] args) {
         Map<String, Object> individualIncomeTaxMap = new HashMap<>(16);
         individualIncomeTaxMap.put("a", new BigDecimal(1));
-        individualIncomeTaxMap.put("c", new BigDecimal(6));
+        individualIncomeTaxMap.put("c", new BigDecimal(0));
         System.out.println(evaluateExpression(individualIncomeTaxMap, "a/c+a*0", 0));
     }
 
