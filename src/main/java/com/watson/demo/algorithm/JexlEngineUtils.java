@@ -15,9 +15,9 @@ public class JexlEngineUtils {
         JexlEngine jexl = new JexlBuilder().create();
         JexlContext jexlContext = new MapContext();
         //需要set源代码Math, 否则报错
-        jexlContext.set("Math", Math.class);
+        // jexlContext.set("Math", Math.class);
         //需要set源代码 BigDecimal, 否则报错
-        jexlContext.set("BigDecimal", BigDecimal.class);
+        //jexlContext.set("BigDecimal", BigDecimal.class);
 
         map.forEach(jexlContext::set);
 
@@ -34,7 +34,7 @@ public class JexlEngineUtils {
         Map<String, Object> individualIncomeTaxMap = new HashMap<>(16);
         individualIncomeTaxMap.put("a", new BigDecimal(1));
         individualIncomeTaxMap.put("c", new BigDecimal(6));
-        System.out.println(evaluateExpression(individualIncomeTaxMap, "a/c+a", 0));
+        System.out.println(evaluateExpression(individualIncomeTaxMap, "a/c+a*0", 0));
     }
 
 }
