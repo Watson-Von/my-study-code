@@ -1,4 +1,4 @@
-package com.watson.demo.algorithm;
+package com.watson.demo.utils;
 
 import org.apache.commons.jexl3.*;
 
@@ -37,7 +37,7 @@ public class JexlEngineUtils {
     public static void main(String[] args) {
         Map<String, Object> individualIncomeTaxMap = new HashMap<>(16);
         individualIncomeTaxMap.put("a", new BigDecimal(1));
-        individualIncomeTaxMap.put("c", new BigDecimal(0));
+        individualIncomeTaxMap.put("c", new BigDecimal(1));
         System.out.println(evaluateExpression(individualIncomeTaxMap, "a/c+a*0", 0));
     }
 
