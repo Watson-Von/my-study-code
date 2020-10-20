@@ -37,8 +37,9 @@ public class JexlEngineUtils {
     public static void main(String[] args) {
         Map<String, Object> individualIncomeTaxMap = new HashMap<>(16);
         individualIncomeTaxMap.put("a", new BigDecimal(1));
+        individualIncomeTaxMap.put("b", new BigDecimal(1));
         individualIncomeTaxMap.put("c", new BigDecimal(1));
-        System.out.println(evaluateExpression(individualIncomeTaxMap, "a/c+a*0", 0));
+        System.out.println(evaluateExpression(individualIncomeTaxMap, "a+b+c/d", 0));
     }
 
 }
