@@ -42,7 +42,7 @@ public class Orderquery {
         // 商户系统内部订单号, 要求32个字符内, 只能是数字、大小写字母_-|*@, 且在同一个商户号下唯一
         order.setOut_trade_no(out_trade_no);
         // 签名类型
-        order.setSign_type("MD5");
+        order.setSign_type("MD5Util");
         // 生成签名
         order.setSign(SignUtil.getSign(order));
 

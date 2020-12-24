@@ -48,7 +48,7 @@ public class MD5 {
         String resultString = null;
         try {
             resultString = origin;
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("MD5Util");
             resultString = byteArrayToHexString(md.digest(resultString.getBytes(StandardCharsets.UTF_8)));
         } catch (Exception e) {
             e.printStackTrace();

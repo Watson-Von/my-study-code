@@ -51,7 +51,7 @@ public class Xiadan extends HttpServlet {
             // 用户标识, 如果 trade_type=JSAPI, 此参数必传, 用户在商户appid下的唯一标识
             order.setOpenid(openid);
             // 签名类型, 默认为MD5
-            order.setSign_type("MD5");
+            order.setSign_type("MD5Util");
             // 生成签名
             String sign = SignUtil.getSign(order);
             order.setSign(sign);
