@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -48,7 +50,7 @@ public class OkHttpUtil {
         }
     }
 
-    public String post(String url, Map<String, Object> map) throws IOException {
+    public static String post(String url, Map<String, Object> map) throws IOException {
         RequestBody formBody = makeBuild(map).build();
         Request request = new Request.Builder()
                 .url(url)
@@ -70,7 +72,7 @@ public class OkHttpUtil {
      *
      * @param map
      */
-    private FormBody.Builder makeBuild(Map<String, Object> map) {
+    private static FormBody.Builder makeBuild(Map<String, Object> map) {
         FormBody.Builder build = new FormBody.Builder();
         if (map != null) {
             for (String key : map.keySet()) {
@@ -84,12 +86,27 @@ public class OkHttpUtil {
 
         // post请求, map 对象封装 post 请求入参, 入参是一个对象
         Map<String, Object> map = new HashMap<>();
-        map.put("age", 12);
-        map.put("name", "watson");
+        map.put("bank_id", 1);
+        map.put("province_id", 538);
+        map.put("city_id", 539);
 
-        String url = "url";
+        String url = "https://www.kaifx.cn/tp/Fun/btnQuanguo.php";
         try {
-            post(url, com.alibaba.fastjson.JSON.toJSONString(map));
+            System.out.println(post(url, map));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        url = "https://www.kaifx.cn/tp/Fun/dede_wd_city.php";
+        map.clear();
+        map.put("province", 55);
+        try {
+            String post = post(url, map);
+            System.out.println(post);
+            Document root = Jsoup.parse(post);
+            String value = root.getElementsByTag("option").first().attr("value");
+            System.out.println(value);
         } catch (IOException e) {
             e.printStackTrace();
         }
