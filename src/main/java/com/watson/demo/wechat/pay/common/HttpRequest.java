@@ -21,11 +21,19 @@ import java.security.UnrecoverableKeyException;
 
 public class HttpRequest {
 
-    //连接超时时间，默认10秒
-    private static final int socketTimeout = 10000;
+    /**
+     * @Author: fengHangWen
+     * @Description: 连接超时时间，默认10秒
+     * @Date: 2021/5/31 9:32
+     **/
+    private static final int SOCKET_TIMEOUT = 10000;
 
-    //传输超时时间，默认30秒
-    private static final int connectTimeout = 30000;
+    /**
+     * @Author: fengHangWen
+     * @Description: 传输超时时间，默认30秒
+     * @Date: 2021/5/31 9:32
+     **/
+    private static final int CONNECT_TIMEOUT = 30000;
 
     /**
      * post请求
@@ -54,8 +62,8 @@ public class HttpRequest {
 
         // 设置请求器的配置
         RequestConfig requestConfig = RequestConfig.custom()
-                .setSocketTimeout(socketTimeout)
-                .setConnectTimeout(connectTimeout).build();
+                .setSocketTimeout(SOCKET_TIMEOUT)
+                .setConnectTimeout(CONNECT_TIMEOUT).build();
 
         httpPost.setConfig(requestConfig);
 

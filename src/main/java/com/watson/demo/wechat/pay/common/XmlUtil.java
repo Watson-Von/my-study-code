@@ -66,13 +66,15 @@ public class XmlUtil {
                     break;
                 case XmlPullParser.START_TAG:
                     String key = pullParser.getName();
-                    if (key.equals("xml")) {
+                    if ("xml".equals(key)) {
                         break;
                     }
                     String value = pullParser.nextText();
                     map.put(key, value);
                     break;
                 case XmlPullParser.END_TAG:
+                    break;
+                default:
                     break;
             }
             eventType = pullParser.next();

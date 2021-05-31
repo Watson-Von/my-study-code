@@ -25,6 +25,7 @@ public class Sign extends HttpServlet {
         super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
             String repay_id = request.getParameter("repay_id");
@@ -53,6 +54,7 @@ public class Sign extends HttpServlet {
         }
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         doGet(request, response);
     }

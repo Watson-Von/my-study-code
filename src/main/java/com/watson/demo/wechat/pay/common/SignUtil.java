@@ -32,8 +32,9 @@ public class SignUtil {
             if (f.get(o) != null && f.get(o) != "") {
                 String name = f.getName();
                 XStreamAlias anno = f.getAnnotation(XStreamAlias.class);
-                if (anno != null)
+                if (anno != null) {
                     name = anno.value();
+                }
                 list.add(name + "=" + f.get(o) + "&");
             }
         }

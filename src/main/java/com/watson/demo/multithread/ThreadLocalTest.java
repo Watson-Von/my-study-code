@@ -25,17 +25,18 @@ public class ThreadLocalTest {
          * 此方法表示, 当前线程如果没有调用 set() 方法设置值时, 第一次调用 get() 获取到的初始值
          * 每个线程最多调用一次
          */
+        @Override
         protected Long initialValue() {
             return System.currentTimeMillis();
         }
 
     };
 
-    public static void begin() {
+    private static void begin() {
         THREAD_LOCAL.set(System.currentTimeMillis());
     }
 
-    public static long end() {
+    private static long end() {
         return System.currentTimeMillis() - THREAD_LOCAL.get();
     }
 

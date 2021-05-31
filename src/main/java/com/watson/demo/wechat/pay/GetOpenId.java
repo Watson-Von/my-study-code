@@ -20,6 +20,7 @@ public class GetOpenId extends HttpServlet {
         super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
         HttpGet httpGet = new HttpGet("https://api.weixin.qq.com/sns/jscode2session?appid=" + Configure.getAppID() + "&secret=" + Configure.getSecret() + "&js_code=" + code + "&grant_type=authorization_code");
@@ -31,6 +32,8 @@ public class GetOpenId extends HttpServlet {
         response.getWriter().append(result);
     }
 
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doGet(request, response);
     }

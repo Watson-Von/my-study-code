@@ -1,12 +1,12 @@
 package com.watson.demo.multithread;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class ThreadPoolInterruptTest {
 
-    private static ExecutorService executorService = Executors.newFixedThreadPool(20);
+    private static ExecutorService executorService = new ThreadPoolExecutor(20, 20,
+            0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<>(), Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
     public static void main(String[] args) {
         Future<?> submit = executorService.submit(new MyThread());

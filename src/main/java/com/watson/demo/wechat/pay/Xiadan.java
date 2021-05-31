@@ -26,6 +26,7 @@ public class Xiadan extends HttpServlet {
         super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
             String openid = request.getParameter("openid");
@@ -73,6 +74,7 @@ public class Xiadan extends HttpServlet {
     }
 
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         doGet(request, response);
     }

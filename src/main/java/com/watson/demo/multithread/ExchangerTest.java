@@ -1,8 +1,6 @@
 package com.watson.demo.multithread;
 
-import java.util.concurrent.Exchanger;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * @author : fengHangWen
@@ -15,7 +13,9 @@ public class ExchangerTest {
 
     private static final Exchanger<String> exgr = new Exchanger<>();
 
-    private static ExecutorService threadPool = Executors.newFixedThreadPool(4);
+    private static ExecutorService threadPool = new ThreadPoolExecutor(4, 4,
+            0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<>(), Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
     public static void main(String[] args) {
 

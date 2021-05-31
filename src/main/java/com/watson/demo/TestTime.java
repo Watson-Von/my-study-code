@@ -8,7 +8,7 @@ public class TestTime {
     public static void main(String[] args) {
 
 
-        long sd = new Date().getTime();
+        long sd = System.currentTimeMillis();
         sd += 60000L * 60L * 2L;
         Date dat = new Date(sd);
         GregorianCalendar gc = new GregorianCalendar();

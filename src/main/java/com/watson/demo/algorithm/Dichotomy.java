@@ -9,7 +9,7 @@ package com.watson.demo.algorithm;
  */
 public class Dichotomy {
 
-    public static Integer dichotomy(int[] array, int i) {
+    private static Integer dichotomy(int[] array, int i) {
 
         if (array == null || array.length == 0 || i == 0) {
             return 0;

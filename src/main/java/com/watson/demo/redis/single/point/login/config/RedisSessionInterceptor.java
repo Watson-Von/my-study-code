@@ -24,6 +24,7 @@ public class RedisSessionInterceptor implements HandlerInterceptor {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) {
@@ -57,6 +58,7 @@ public class RedisSessionInterceptor implements HandlerInterceptor {
         }
     }
 
+    @Override
     public void postHandle(HttpServletRequest request,
                            HttpServletResponse response,
                            Object handler,
