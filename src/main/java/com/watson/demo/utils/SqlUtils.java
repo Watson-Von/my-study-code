@@ -31,7 +31,18 @@ public class SqlUtils {
     @Data
     @AllArgsConstructor
     public static class ValueType {
+        /**
+         * @Author: fengHangWen
+         * @Description: 值的类型
+         * @Date: 2021/6/2 16:01
+         **/
         private String type;
+
+        /**
+         * @Author: fengHangWen
+         * @Description: 具体的值
+         * @Date: 2021/6/2 16:02
+         **/
         private Object value;
     }
 
@@ -43,7 +54,7 @@ public class SqlUtils {
      * insertDataList： 封装需要生成 insert 语句的值
      * @Date: 2021/6/2 15:31
      **/
-    public static String creataInsertSqlScrip(String tableName,
+    public static String createInsertSqlScrip(String tableName,
                                               List<String> columnList,
                                               List<List<ValueType>> insertDataList) {
 
@@ -129,7 +140,7 @@ public class SqlUtils {
                     list.add(value.toString());
                     break;
                 default:
-                    log.info("未知的类型: {}", type);
+                    log.info("未知的值类型: {}", type);
             }
 
         });
@@ -170,9 +181,9 @@ public class SqlUtils {
 
         ArrayList<String> columnList = Lists.newArrayList("id", "market_grid_code", "store_id", "store_name");
 
-        String creataInsertSqlScrip = creataInsertSqlScrip("supply_s_config", columnList, insertDataList);
+        String createInsertSqlScrip = createInsertSqlScrip("supply_s_config", columnList, insertDataList);
 
-        System.out.println(creataInsertSqlScrip);
+        System.out.println(createInsertSqlScrip);
 
     }
 

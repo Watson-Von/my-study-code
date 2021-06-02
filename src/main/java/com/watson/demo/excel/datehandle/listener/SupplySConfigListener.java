@@ -52,7 +52,7 @@ public class SupplySConfigListener extends AnalysisEventListener<SupplySConfigDT
 
         }
 
-        String result = SqlUtils.creataInsertSqlScrip(TABLE_NAME, COUNLUM_LIST, insertDataList);
+        String result = SqlUtils.createInsertSqlScrip(TABLE_NAME, COUNLUM_LIST, insertDataList);
 
         log.info("生成的初始化 {} 表的数据:\r\n{}", TABLE_NAME, result);
 
