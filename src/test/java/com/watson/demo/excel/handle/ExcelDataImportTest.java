@@ -39,10 +39,10 @@ public class ExcelDataImportTest {
     @Test
     public void test2() {
 
-        String excelFilePath = "C:\\Users\\Administrator\\Desktop\\test.xlsx";
+        String excelFilePath = "C:\\Users\\Administrator\\Desktop\\数据\\智能分流二期1阶段临时测试数据2021-6-4.xlsx";
 
         EasyExcel.read(excelFilePath, SupplyPreferenceConfigDTO.class,
-                new SupplyPreferenceConfigListener()).sheet(0).doRead();
+                new SupplyPreferenceConfigListener()).sheet("维修厂个性化喜好").doRead();
 
     }
 
@@ -54,9 +54,10 @@ public class ExcelDataImportTest {
     @Test
     public void test1() {
 
-        String excelFilePath = "C:\\Users\\Administrator\\Desktop\\test.xlsx";
+        String excelFilePath = "C:\\Users\\Administrator\\Desktop\\数据\\智能分流二期1阶段临时测试数据2021-6-4.xlsx";
 
-        EasyExcel.read(excelFilePath, SupplySConfigDTO.class, new SupplySConfigListener()).sheet(0).doRead();
+        EasyExcel.read(excelFilePath, SupplySConfigDTO.class,
+                new SupplySConfigListener()).sheet("S商家").doRead();
 
     }
 

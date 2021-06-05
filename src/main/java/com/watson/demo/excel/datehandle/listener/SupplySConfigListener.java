@@ -19,8 +19,14 @@ import java.util.List;
 public class SupplySConfigListener extends AnalysisEventListener<SupplySConfigDTO> {
 
     private static final String TABLE_NAME = "supply_s_config";
+
+    private static final String DATA_CREATOR = "system";
+
     private static final List<String> COUNLUM_LIST =
-            Lists.newArrayList("id", "market_grid_code", "store_id", "store_name");
+            Lists.newArrayList(
+                    "market_grid_code",
+                    "store_id", "store_name",
+                    "created_by", "last_updated_by");
 
     private List<SupplySConfigDTO> excelDataList = new ArrayList<>();
 
@@ -40,15 +46,14 @@ public class SupplySConfigListener extends AnalysisEventListener<SupplySConfigDT
 
         List<List<SqlUtils.ValueType>> insertDataList = Lists.newArrayList();
 
-        for (int i = 0; i < excelDataList.size(); i++) {
-
-            SupplySConfigDTO supplySConfigDTO = excelDataList.get(i);
+        for (SupplySConfigDTO supplySConfigDTO : excelDataList) {
 
             insertDataList.add(Lists.newArrayList(
-                    new SqlUtils.ValueType(SqlUtils.INT_TYPE, i + 1),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getMarketGridCode()),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getStoreId()),
-                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getStoreName())));
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getStoreName()),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, DATA_CREATOR),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, DATA_CREATOR)));
 
         }
 

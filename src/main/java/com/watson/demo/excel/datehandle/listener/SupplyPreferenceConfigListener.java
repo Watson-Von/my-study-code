@@ -19,11 +19,16 @@ import java.util.List;
 public class SupplyPreferenceConfigListener extends AnalysisEventListener<SupplyPreferenceConfigDTO> {
 
     private static final String TABLE_NAME = "supply_preference_config";
+
+    private static final String DATA_CREATOR = "system";
+
     private static final List<String> COUNLUM_LIST =
             Lists.newArrayList(
-                    "id", "garage_company_id",
+                    "garage_company_id",
                     "car_brand_id", "location_id",
-                    "business_category_name", "store_id");
+                    "business_category_name", "store_id",
+                    "description", "created_by",
+                    "last_updated_by");
 
     private List<SupplyPreferenceConfigDTO> excelDataList = new ArrayList<>();
 
@@ -43,17 +48,25 @@ public class SupplyPreferenceConfigListener extends AnalysisEventListener<Supply
 
         List<List<SqlUtils.ValueType>> insertDataList = Lists.newArrayList();
 
-        for (int i = 0; i < excelDataList.size(); i++) {
+        String description;
+        for (SupplyPreferenceConfigDTO dto : excelDataList) {
 
-            SupplyPreferenceConfigDTO dto = excelDataList.get(i);
 
+            description = dto.getGarageCompanyName()
+                    + "-"
+                    + dto.getCarBrandName()
+                    + "-" + dto.getLocationName()
+                    + "-" + dto.getStoreName();
             insertDataList.add(Lists.newArrayList(
-                    new SqlUtils.ValueType(SqlUtils.INT_TYPE, i + 1),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getGarageCompanyId()),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getCarBrandId()),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getLocationId()),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getBusinessCategoryName()),
-                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getStoreId())));
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getStoreId()),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, description),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, DATA_CREATOR),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, DATA_CREATOR))
+            );
 
         }
 

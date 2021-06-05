@@ -11,20 +11,32 @@ import lombok.Data;
 @Data
 public class SupplyPreferenceConfigDTO {
 
-    @ExcelProperty(value = "'维修厂id'", index = 0)
+    @ExcelProperty(value = "维修厂id", index = 0)
     private String garageCompanyId;
 
-    @ExcelProperty(value = "'汽车品牌id'", index = 1)
+    @ExcelProperty(value = "维修厂Name", index = 1)
+    private String garageCompanyName;
+
+    @ExcelProperty(value = "汽车品牌code", index = 2)
     private String carBrandId;
 
-    @ExcelProperty(value = "'本地id'", index = 2)
+    @ExcelProperty(value = "汽车品牌名称", index = 3)
+    private String carBrandName;
+
+    @ExcelProperty(value = "主机上id", index = 4)
     private String locationId;
 
-    @ExcelProperty(value = "'业务一级分类名称'", index = 3)
+    @ExcelProperty(value = "主机上名称", index = 5)
+    private String locationName;
+
+    @ExcelProperty(value = "业务一级分类名称", index = 6)
     private String businessCategoryName;
 
-    @ExcelProperty(value = "'店铺id'", index = 4)
+    @ExcelProperty(value = "店铺id", index = 7)
     private String storeId;
+
+    @ExcelProperty(value = "店铺名称", index = 8)
+    private String storeName;
 
 
 }
