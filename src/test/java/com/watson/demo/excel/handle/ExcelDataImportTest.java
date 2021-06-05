@@ -24,10 +24,10 @@ public class ExcelDataImportTest {
     @Test
     public void test3() {
 
-        String excelFilePath = "C:\\Users\\Administrator\\Desktop\\test.xlsx";
+        String excelFilePath = "C:\\Users\\Administrator\\Desktop\\数据\\智能分流二期1阶段临时测试数据2021-6-4(3).xlsx";
 
         EasyExcel.read(excelFilePath, SupplyAdvantageConfigDTO.class,
-                new SupplyAdvantageConfigDTOListener()).sheet(0).doRead();
+                new SupplyAdvantageConfigDTOListener()).sheet("优势商家 (龙坂) (2)").doRead();
 
     }
 

@@ -19,12 +19,17 @@ import java.util.List;
 public class SupplyAdvantageConfigDTOListener extends AnalysisEventListener<SupplyAdvantageConfigDTO> {
 
     private static final String TABLE_NAME = "supply_advantage_config";
+
+    private static final String DATA_CREATOR = "system";
+
     private static final List<String> COUNLUM_LIST =
             Lists.newArrayList(
-                    "id", "market_grid_code",
+                    "market_grid_code",
                     "car_brand_id", "location_id",
                     "business_category_name", "supply_type",
-                    "store_id");
+                    "store_id", "description",
+                    "created_by",
+                    "last_updated_by");
 
     private List<SupplyAdvantageConfigDTO> excelDataList = new ArrayList<>();
 
@@ -44,18 +49,33 @@ public class SupplyAdvantageConfigDTOListener extends AnalysisEventListener<Supp
 
         List<List<SqlUtils.ValueType>> insertDataList = Lists.newArrayList();
 
-        for (int i = 0; i < excelDataList.size(); i++) {
+        String supplyType;
+        String description;
+        for (SupplyAdvantageConfigDTO dto : excelDataList) {
 
-            SupplyAdvantageConfigDTO dto = excelDataList.get(i);
+            supplyType = dto.getSupplyType();
+            if ("本地".equals(supplyType)) {
+                supplyType = "LOCAL";
+            }
+            if ("异地".equals(supplyType)) {
+                supplyType = "NATION";
+            }
+
+            description = dto.getCarBrandName()
+                    + "-" + dto.getLocationName()
+                    + "-" + dto.getSupplyType()
+                    + "-" + dto.getStoreName();
 
             insertDataList.add(Lists.newArrayList(
-                    new SqlUtils.ValueType(SqlUtils.INT_TYPE, i + 1),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getMarketGridCode()),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getCarBrandId()),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getLocationId()),
                     new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getBusinessCategoryName()),
-                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getSupplyType()),
-                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getStoreId())));
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplyType),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, dto.getStoreId()),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, description),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, DATA_CREATOR),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, DATA_CREATOR)));
 
         }
 
