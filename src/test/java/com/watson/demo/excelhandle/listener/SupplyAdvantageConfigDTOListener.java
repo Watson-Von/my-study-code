@@ -1,12 +1,14 @@
 package com.watson.demo.excelhandle.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.dto.SupplyAdvantageConfigDTO;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.enums.CarBrandEnum;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.listener.base.BaseListener;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.util.SqlUtils;
+
 import com.google.common.collect.Lists;
 import java.util.List;
+
+import com.watson.demo.excelhandle.dto.SupplyAdvantageConfigDTO;
+import com.watson.demo.excelhandle.enums.CarBrandEnum;
+import com.watson.demo.excelhandle.listener.base.BaseListener;
+import com.watson.demo.utils.SqlUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,6 +25,11 @@ public class SupplyAdvantageConfigDTOListener extends BaseListener<SupplyAdvanta
       String tableName,
       List<String> counlumList) {
     super(excelFilePath, sheetName, tableName, counlumList);
+  }
+
+  @Override
+  public void doAfterAllAnalysed(List<SupplyAdvantageConfigDTO> list) {
+
   }
 
   @Override

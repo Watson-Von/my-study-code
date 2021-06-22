@@ -1,19 +1,19 @@
 package com.watson.demo.excelhandle.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
-import com.casstime.commons.utils.JsonUtil;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.dto.FourTableDTO;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.enums.CarBrandEnum;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.enums.LocationIdEnum;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.listener.base.BaseListener;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.util.SqlUtils;
-import com.casstime.ec.cloud.uniqueId.UniqueIdUtil;
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.watson.demo.excelhandle.dto.FourTableDTO;
+import com.watson.demo.excelhandle.enums.CarBrandEnum;
+import com.watson.demo.excelhandle.enums.LocationIdEnum;
+import com.watson.demo.excelhandle.listener.base.BaseListener;
+import com.watson.demo.utils.SqlUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +27,11 @@ public class FourTableDTOListener extends BaseListener<FourTableDTO> {
       String sheetName,
       Map<String, List<String>> map) {
     super(excelFilePath, sheetName, map);
+  }
+
+  @Override
+  public void doAfterAllAnalysed(List<FourTableDTO> list) {
+
   }
 
   private static final String DATA_CREATOR = "system";
@@ -55,7 +60,7 @@ public class FourTableDTOListener extends BaseListener<FourTableDTO> {
     g1.forEach((t1, list1) -> {
 
       String[] strArray1 = t1.split(separation);
-      long complexTypeConfigId = UniqueIdUtil.acquireLongId();
+      long complexTypeConfigId = System.currentTimeMillis();
 
       distributePolicyComplexTypeConfigDOList.add(createT1Data(complexTypeConfigId, strArray1));
 
@@ -74,7 +79,7 @@ public class FourTableDTOListener extends BaseListener<FourTableDTO> {
       g2.forEach((t2, list2) -> {
 
         String[] strArray2 = t2.split(separation);
-        long complexConditionConfigId = UniqueIdUtil.acquireLongId();
+        long complexConditionConfigId = System.currentTimeMillis();
 
         distributePolicyComplexConditionConfigList
             .add(createT2Data(complexConditionConfigId, complexTypeConfigId, strArray2));
@@ -231,7 +236,7 @@ public class FourTableDTOListener extends BaseListener<FourTableDTO> {
       return null;
     }
 
-    long id = UniqueIdUtil.acquireLongId();
+    long id = System.currentTimeMillis();
     Long parentId = null;
     String label = fourTableDTO.getLabel();
 
@@ -244,7 +249,8 @@ public class FourTableDTOListener extends BaseListener<FourTableDTO> {
     } else if (label.contains("NATION")) {
       parentId = map.getOrDefault("NATION_parentId", null);
     } else {
-      log.warn("label 无法判断 : " + JsonUtil.serializer(fourTableDTO));
+
+      log.warn("label 无法判断 : " + JSON.toJSONString(fourTableDTO));
     }
 
     // 如果 sequence2 等于 null, 则赋值 0

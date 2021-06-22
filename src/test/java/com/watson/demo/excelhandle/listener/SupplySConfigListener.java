@@ -1,12 +1,13 @@
 package com.watson.demo.excelhandle.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.dto.SupplySConfigDTO;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.listener.base.BaseListener;
-import com.casstime.ec.cloud.inquiry.infrastructure.handler.excelhandle.util.SqlUtils;
 import com.google.common.collect.Lists;
-import java.util.List;
+import com.watson.demo.excelhandle.dto.SupplySConfigDTO;
+import com.watson.demo.excelhandle.listener.base.BaseListener;
+import com.watson.demo.utils.SqlUtils;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 /**
  * @Author: fengHangWen
@@ -16,34 +17,39 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SupplySConfigListener extends BaseListener<SupplySConfigDTO> {
 
-  public SupplySConfigListener(
-      String excelFilePath,
-      String sheetName,
-      String tableName,
-      List<String> counlumList) {
-    super(excelFilePath, sheetName, tableName, counlumList);
-  }
+    public SupplySConfigListener(
+            String excelFilePath,
+            String sheetName,
+            String tableName,
+            List<String> counlumList) {
+        super(excelFilePath, sheetName, tableName, counlumList);
+    }
 
-
-  @Override
-  public void doAfterAllAnalysed(AnalysisContext analysisContext) {
-
-    List<List<SqlUtils.ValueType>> insertDataList = Lists.newArrayList();
-
-    for (SupplySConfigDTO supplySConfigDTO : getExcelDataList()) {
-
-      // 这里添加数据的顺序需要与列名的顺序保持一致
-      insertDataList.add(Lists.newArrayList(
-          new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getMarketGridCode()),
-          new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getStoreId()),
-          new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getStoreName()),
-          new SqlUtils.ValueType(SqlUtils.STRING_TYPE, "system"),
-          new SqlUtils.ValueType(SqlUtils.STRING_TYPE, "system")));
+    @Override
+    public void doAfterAllAnalysed(List<SupplySConfigDTO> list) {
 
     }
 
-    super.printInsertSqlScript(insertDataList);
 
-  }
+    @Override
+    public void doAfterAllAnalysed(AnalysisContext analysisContext) {
+
+        List<List<SqlUtils.ValueType>> insertDataList = Lists.newArrayList();
+
+        for (SupplySConfigDTO supplySConfigDTO : getExcelDataList()) {
+
+            // 这里添加数据的顺序需要与列名的顺序保持一致
+            insertDataList.add(Lists.newArrayList(
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getMarketGridCode()),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getStoreId()),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, supplySConfigDTO.getStoreName()),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, "system"),
+                    new SqlUtils.ValueType(SqlUtils.STRING_TYPE, "system")));
+
+        }
+
+        super.printInsertSqlScript(insertDataList);
+
+    }
 
 }
