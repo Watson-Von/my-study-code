@@ -48,6 +48,11 @@ public class JexlEngineUtils {
         individualIncomeTaxMap.put("d", new BigDecimal(5000));
         String a = "(a*0.1+b+c)/(d*50)";
         System.out.println(evaluateExpression(individualIncomeTaxMap, a, 2));
+        individualIncomeTaxMap.put("a", new BigDecimal(5000));
+        individualIncomeTaxMap.put("b", "5000");
+        individualIncomeTaxMap.put("c", new BigDecimal(5000));
+        individualIncomeTaxMap.put("d", new BigDecimal(5000));
+        System.out.println(evaluateExpression(individualIncomeTaxMap, a, 2));
     }
 
 }
